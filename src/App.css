@@ -1,78 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --primary-bg: #282c34;
+  --secondary-bg: #f4f4f4;
+  --text-color: white;
+  --shadow-color: white;
+  --btn-bg: royalblue;
+}
+
+.light-mode {
+  --primary-bg: #f4f4f4;
+  --secondary-bg: #282c34;
+  --text-color: black;
+  --shadow-color: black;
+  --btn-bg: rgb(129, 65, 219);
+}
+
 .App {
   text-align: center;
   height: 100vh;
   width: 100%;
-  background-color: #282c34;
+  background-color: var(--primary-bg);
   display: flex;
   flex-direction: row;
-} 
+  transition: 0.3s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+}
 
-.box{
+.box {
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:50px;
+  gap: 30px;
 }
 
-.profile-pic{
-  width: 200px;
-  height:200px;
+.profile-pic {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  /* box-shadow: 5px 5px 10px royalblue; */
   overflow: hidden;
   animation: myAnimation 3s infinite;
 }
 
 @keyframes myAnimation {
-  0%{box-shadow: 5px 5px 10px royalblue;}
-  33%{box-shadow: 5px 5px 10px rgb(182, 92, 12);}
-  66%{box-shadow: 5px 5px 10px rgb(56, 227, 59);}
-  100%{box-shadow: 5px 5px 10px royalblue;}
-}
+  0% {
+    box-shadow: 5px 5px 15px royalblue;
+  }
 
-textarea{
-  width: 80%;
-  height: 300px;
-  border: none;
+  33% {
+    box-shadow: 5px 5px 15px rgb(182, 92, 12);
+  }
+
+  66% {
+    box-shadow: 5px 5px 15px rgb(56, 227, 59);
+  }
+
+  100% {
+    box-shadow: 5px 5px 15px royalblue;
+  }
+}
+textarea {
+  width: 85%;
+  height: 250px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   outline: none;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px white;
-  background-color: transparent;
-  color: white;
-  padding: 20px;
-  font-size: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.2), inset -4px -4px 10px rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  padding: 15px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  resize: none;
+  transition: all 0.3s ease-in-out;
 }
 
-textarea::-webkit-scrollbar{
+/* Scrollbar Styling */
+textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+/* Focus Effect */
+textarea:focus {
+  border-color: rgba(32, 75, 104, 0.7);
+  box-shadow: 0px 0px 15px rgba(32, 75, 104, 0.7);
+}
+textarea::-webkit-scrollbar {
   display: none;
 }
 
-button{
+button {
   width: 80%;
   border: none;
   outline: none;
-  background-color: royalblue;
+  background-color: var(--btn-bg);
   color: white;
-  padding: 10px;
-  font-size: 20px;
+  padding: 12px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
   border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.3s ease-in-out;
 }
 
-button:hover{
-  box-shadow:5px 5px 10px white ;
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 150px;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+}
+.button-group {
+  display: flex;
+  gap: 15px;
 }
 
-.pic{
-  width: 200px;
-  height: 200px;
-
-}
-
-.label{
-  color: white;
+.label {
+  color: var(--text-color);
   font-size: 20px;
+}
 
+.pic {
+  width: 150px;
+  height: 150px;
+}
+
+.button-group {
+  display: flex;
+  width: 80%;
+  /* Matches send button width */
+  gap: 15px;
+}
+
+.button-group button {
+  flex: 1;
+  /* Ensures equal width */
 }
