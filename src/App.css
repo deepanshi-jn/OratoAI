@@ -16,17 +16,45 @@
   --btn-bg: rgb(129, 65, 219);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Main App Container */
 .App {
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background-color: var(--primary-bg);
   display: flex;
   flex-direction: row;
-  transition: 0.3s ease-in-out;
+  justify-content: center;
+  align-items: center;
   font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  overflow-y: auto;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+    padding: 10px;
+    min-height: 100vh;
+  }
+}
+
+/* Box Styling */
 .box {
   width: 50%;
   display: flex;
@@ -34,35 +62,43 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  padding: 20px;
 }
 
+@media (max-width: 768px) {
+  .box {
+    width: 100%;
+  }
+}
+
+/* Profile Picture */
 .profile-pic {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  animation: myAnimation 3s infinite;
+  object-fit: cover;
+  border: 5px solid transparent;
+  animation: gradientBorder 3s infinite;
 }
 
-@keyframes myAnimation {
-  0% {
-    box-shadow: 5px 5px 15px royalblue;
-  }
+@keyframes gradientBorder {
+  0%, 100% { box-shadow: 0 0 15px royalblue; border-color: royalblue; }
+  33% { box-shadow: 0 0 15px rgb(182, 92, 12); border-color: rgb(182, 92, 12); }
+  66% { box-shadow: 0 0 15px rgb(56, 227, 59); border-color: rgb(56, 227, 59); }
+}
 
-  33% {
-    box-shadow: 5px 5px 15px rgb(182, 92, 12);
-  }
-
-  66% {
-    box-shadow: 5px 5px 15px rgb(56, 227, 59);
-  }
-
-  100% {
-    box-shadow: 5px 5px 15px royalblue;
+@media (max-width: 480px) {
+  .profile-pic {
+    width: 120px;
+    height: 120px;
   }
 }
+
+/* Textarea */
 textarea {
   width: 85%;
+  max-width: 500px;
   height: 250px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   outline: none;
@@ -78,27 +114,27 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
-/* Scrollbar Styling */
 textarea::-webkit-scrollbar {
-  width: 5px;
+  display: none;
+  /* Hides scrollbar in Chrome, Safari, and Edge */
 }
 
-textarea::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+@media (max-width: 480px) {
+  textarea {
+    width: 100%;
+    height: 200px;
+    font-size: 16px;
+  }
 }
 
-/* Focus Effect */
 textarea:focus {
   border-color: rgba(32, 75, 104, 0.7);
   box-shadow: 0px 0px 15px rgba(32, 75, 104, 0.7);
 }
-textarea::-webkit-scrollbar {
-  display: none;
-}
 
+/* General Button Styling */
 button {
-  width: 80%;
+  width: 70%;
   border: none;
   outline: none;
   background-color: var(--btn-bg);
@@ -115,39 +151,90 @@ button {
   transition: 0.3s ease-in-out;
 }
 
+/* Fix Speak Button Styling */
+.button-group button {
+  width:70%;
+  background-color: var(--btn-bg);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Theme Toggle Button: Centered on Large Screens, Right on Small Screens */
 .theme-toggle {
   position: absolute;
   top: 20px;
-  right: 150px;
+  left: 15%;
+  /* transform: translateX(-50%); */
+
   background: transparent;
   border: none;
   color: var(--text-color);
   font-size: 24px;
   cursor: pointer;
 }
+
+/* Move to top-right on small screens */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 10px;
+    right: -90px;
+    left: auto;
+    transform: none;
+    position: fixed;
+  }
+}
+
+/* Button Group */
 .button-group {
   display: flex;
+  width: 70%;
   gap: 15px;
 }
 
+@media (max-width: 480px) {
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+}
+
+.button-group button {
+  flex: 1;
+}
+
+/* Labels */
 .label {
   color: var(--text-color);
   font-size: 20px;
 }
 
+@media (max-width: 480px) {
+  .label {
+    font-size: 18px;
+  }
+}
+
+/* Profile Picture */
 .pic {
   width: 150px;
   height: 150px;
+  object-fit: cover;
 }
 
-.button-group {
-  display: flex;
-  width: 80%;
-  /* Matches send button width */
-  gap: 15px;
-}
-
-.button-group button {
-  flex: 1;
-  /* Ensures equal width */
+@media (max-width: 480px) {
+  .pic {
+    width: 120px;
+    height: 120px;
+  }
 }
